@@ -1,0 +1,14 @@
+---
+- name: Collect software information
+  hosts: windows_machine
+  gather_facts: false
+  tasks:
+    - name: Get software list
+      win_shell: |
+        $software = Get-WmiObject -Class Win32_Product | Select-Object -Property Name, Version
+        $software | ConvertTo-Json
+      register: software_result
+
+    - name: Display software information
+      debug:
+        var: software_result.stdout_lines
