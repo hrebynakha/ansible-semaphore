@@ -1,6 +1,6 @@
 ---
 - name: Collect software information
-  hosts: windows_machine
+  hosts: wintest
   gather_facts: false
   tasks:
     - name: Get software list
